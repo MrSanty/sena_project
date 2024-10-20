@@ -10,7 +10,7 @@ interface RootLayoutProps {
 
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["200", "400", "600", "700"],
+  weight: ["200", "400", "600", "700"]
 })
 
 const RootLayout: FC<RootLayoutProps> = ({ children }) => {
