@@ -1,0 +1,118 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum TypeDoc {
+  CC
+  CE
+  TI
+  PPT
+  PST
+}
+
+enum UnitType {
+  Cantidad
+  Kilogramo
+  Litro
+  Metro
+}
+
+model companies {
+  id         Int      @id @default(autoincrement())
+  nit        String   @unique
+  name       String   @unique
+  users      users[]  
+  stocks     stock[]  
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt 
+}
+
+model stock {
+  id          Int      @id @default(autoincrement())
+  code        String   @unique
+  name        String
+  description String?
+  quantity    Int
+  unit_type   UnitType
+  company_id  Int
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+
+  company     companies @relation(fields: [company_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+}
+
+model users {
+  id               Int                @id @default(autoincrement())
+  type_doc         TypeDoc
+  num_doc          String             @unique
+  email            String             @unique 
+  first_name       String?            @db.VarChar(255)
+  last_name        String?            @db.VarChar(255)
+  password         String 
+  company_id       Int
+  user_roles       user_roles[]       
+  user_permissions user_permissions[]
+  created_at       DateTime           @default(now())
+  updated_at       DateTime           @updatedAt
+
+  company           companies         @relation(fields: [company_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+}
+
+model roles {
+  id               Int                @id @default(autoincrement())
+  name             String             @unique
+  user_roles       user_roles[]
+  role_permissions role_permissions[]
+  created_at       DateTime           @default(now())
+  updated_at       DateTime           @updatedAt
+}
+
+model permissions {
+  id               Int                @id @default(autoincrement())
+  name             String             @unique
+  role_permissions role_permissions[]
+  user_permissions user_permissions[]
+  created_at       DateTime           @default(now())
+  updated_at       DateTime           @updatedAt
+}
+
+model user_roles {
+  user_id    Int
+  role_id    Int
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  user       users    @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  role       roles    @relation(fields: [role_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  @@id([user_id, role_id])
+}
+
+model role_permissions {
+  role_id       Int
+  permission_id Int
+  created_at    DateTime    @default(now())
+  updated_at    DateTime    @updatedAt
+
+  role          roles       @relation(fields: [role_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  permission    permissions @relation(fields: [permission_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  @@id([role_id, permission_id])
+}
+
+model user_permissions {
+  user_id       Int
+  permission_id Int
+  created_at    DateTime    @default(now())
+  updated_at    DateTime    @updatedAt
+
+  user          users       @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  permission    permissions @relation(fields: [permission_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  @@id([user_id, permission_id])
+}
