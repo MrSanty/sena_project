@@ -1,5 +1,4 @@
 import type { Metadata } from "next"
-import "@/styles/login.css"
 import { FC } from "react"
 
 interface LoginLayoutProps {
@@ -13,7 +12,7 @@ export const metadata: Metadata = {
 
 const LoginLayout: FC<LoginLayoutProps> = ({ children }) => {
   return (
-    <div className="flex items-center justify-center min-h-screen bg-image-auth">
+    <div className="flex items-center justify-center min-h-screen bg-cover bg-no-repeat bg-login">
       {children}
     </div>
   )

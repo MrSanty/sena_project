@@ -1,4 +1,5 @@
 import Image from "next/image"
+import { AuthForm } from "./ui/AuthForm"
 
 const Login = () => {
   return (
@@ -21,7 +22,7 @@ const Login = () => {
             Inicia sesión en tu cuenta
           </p>
         </div>
-        {/* <AuthForm /> */}
+        <AuthForm />
       </div>
       <div
         className="px-8 py-4 bg-gray-50 border-t border-gray-100 text-center"

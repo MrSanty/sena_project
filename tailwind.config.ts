@@ -9,7 +9,11 @@ const config: Config = {
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}"
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        "login": "url('/images/background.png')",
+      }
+    },
   },
   darkMode: "class",
   plugins: [nextui()]
