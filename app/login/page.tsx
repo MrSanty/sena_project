@@ -1,7 +1,8 @@
 import Image from "next/image"
 import { AuthForm } from "./ui/AuthForm"
+import { auth } from "@/auth"
 
-const Login = () => {
+const Login = async () => {
   return (
     <div
       className="bg-white bg-opacity-90 rounded-lg shadow-xl overflow-hidden max-w-md w-full"

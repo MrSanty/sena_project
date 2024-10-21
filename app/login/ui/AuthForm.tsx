@@ -13,6 +13,8 @@ import { login } from "@/actions/auth/login"
 
 
 export const AuthForm = () => {
+  
+  
   const [ isVisible, setIsVisible ] = useState(false)
   const router = useRouter()
   const {
@@ -29,6 +31,7 @@ export const AuthForm = () => {
     if (loggedIn) {
       toast.dismiss('login')
       toast.success('Sesión iniciada correctamente')
+      router.push('/dashboard')
     } else {
       toast.dismiss('login')
       toast.error('Credenciales incorrectas')
