@@ -4,7 +4,7 @@ import { SubmitHandler, useForm } from "react-hook-form"
 import { loginSchema } from "@/validation/loginSchema"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { FormAuthData } from "@/interfaces/LoginData"
-import { useRouter } from "next/router"
+import { useRouter } from 'next/navigation'
 import toast from "react-hot-toast"
 import { login } from "@/actions"
 import { useState } from "react"
