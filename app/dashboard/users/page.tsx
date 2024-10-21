@@ -1,6 +1,6 @@
-import { auth } from "@/auth"
-import { TableData } from "./ui/TableData"
 import { CreateModal } from "./ui/CreateModal"
+import { TableData } from "./ui/TableData"
+import { auth } from "@/auth"
 
 const User = async () => {
   const session = await auth()

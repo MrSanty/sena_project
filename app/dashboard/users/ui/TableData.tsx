@@ -2,6 +2,8 @@
 
 import { getUsers } from "@/actions/user/getUsers"
 import { useQuery } from "@tanstack/react-query"
+import { DeleteModal } from "./DeleteModal"
+import { EditModal } from "./EditModal"
 import toast from "react-hot-toast"
 import {
   Table,
@@ -13,8 +15,6 @@ import {
   Spinner
 } from "@nextui-org/react"
 import { FC } from "react"
-import { EditModal } from "./EditModal"
-import { DeleteModal } from "./DeleteModal"
 
 interface TableDataProps {
   company_id: number,
@@ -32,10 +32,8 @@ export const TableData: FC<TableDataProps> = ({ company_id, id }) => {
         toast.error("Error al obtener los usuarios")
         return []
       }
-    },
+    }
   })
-
-  console.log(id)
 
   return (
     <Table
