@@ -6,7 +6,6 @@ import { userEditSchema } from "@/validation/userSchema"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { updateUser } from "@/actions"
 import toast from "react-hot-toast"
-import { useEffect } from "react"
 import { 
   DataUserType, 
   UpdateFormUser,
@@ -18,19 +17,17 @@ export const useUpdateUser = (data: DataUserType, onClose: () => void) => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
-    setValue
+    formState: { errors }
   } = useForm<UpdateFormUser>({
-    resolver: yupResolver(userEditSchema)
+    resolver: yupResolver(userEditSchema),
+    defaultValues: {
+      first_name: data.first_name!,
+      last_name: data.last_name!,
+      email: data.email,
+      type_doc: data.type_doc,
+      num_doc: data.num_doc
+    }
   })
-
-  useEffect(() => {
-    setValue('first_name', data.first_name || '')
-    setValue('last_name', data.last_name || '')
-    setValue('email', data.email)
-    setValue('type_doc', data.type_doc)
-    setValue('num_doc', data.num_doc)
-  }, [ data ])
 
   const { mutate } = useMutation({
     mutationFn: async (data: UpdateUserServer) => {
