@@ -1,15 +1,15 @@
 'use client'
-import { EyeSlashIcon } from "@/components/icons/EyeSlashIcon"
+
 import { SubmitHandler, useForm } from "react-hook-form"
 import { loginSchema } from "@/validation/loginSchema"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { FormAuthData } from "@/interfaces/LoginData"
-import { EyeIcon } from "@/components/icons/EyeIcon"
 import { Button, Input } from "@nextui-org/react"
 import { useRouter } from "next/navigation"
 import toast from "react-hot-toast"
 import { useState } from "react"
 import { login } from "@/actions/auth/login"
+import { EyeIcon, EyeSlashIcon } from "@/components/icons"
 
 
 export const AuthForm = () => {
@@ -20,7 +20,7 @@ export const AuthForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors, isSubmitting }
   } = useForm<FormAuthData>({
     resolver: yupResolver(loginSchema)
   })
@@ -99,7 +99,7 @@ export const AuthForm = () => {
       <div>
         <Button
           type="submit"
-          
+          isLoading={isSubmitting}
           className="w-full bg-zinc-900 text-white"
         >
           Iniciar sesión
