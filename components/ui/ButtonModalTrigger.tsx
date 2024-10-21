@@ -3,7 +3,7 @@ import { FC, ReactNode } from "react"
 
 interface ButtonModalTriggerProps {
   classNames?: {
-    button: string;
+    button?: string;
     text: string;
   }
   onClick: () => void;
@@ -22,12 +22,12 @@ export const ButtonModalTrigger: FC<ButtonModalTriggerProps> = ({
   if (isAction) {
     return (
       <Tooltip content={text} color="foreground" placement="top">
-        <Button
+        <button
           onClick={onClick}
           className={classNames?.button}
         >
           {icon}
-        </Button>
+        </button>
       </Tooltip>
     )
   } else {

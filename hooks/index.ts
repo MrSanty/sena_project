@@ -7,3 +7,4 @@ export * from './auth/useLogin'
 
 // user hooks
 export * from './users/useAddUser'
+export * from './users/useUpdateUser'

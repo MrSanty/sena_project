@@ -2,8 +2,8 @@
 
 import { getUsers } from "@/actions/user/getUsers"
 import { useQuery } from "@tanstack/react-query"
-import { DeleteModal } from "./DeleteModal"
-import { EditModal } from "./EditModal"
+import { DeleteModal } from "./DeleteModal2"
+import { UpdateModal } from "./UpdateModal"
 import toast from "react-hot-toast"
 import {
   Table,
@@ -88,7 +88,7 @@ export const TableData: FC<TableDataProps> = ({ company_id, id }) => {
               <TableCell
                 className="flex justify-end gap-2"
               >
-                <EditModal
+                <UpdateModal
                   data={item}
                 />
 
