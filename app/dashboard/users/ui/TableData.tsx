@@ -2,7 +2,7 @@
 
 import { getUsers } from "@/actions/user/getUsers"
 import { useQuery } from "@tanstack/react-query"
-import { DeleteModal } from "./DeleteModal2"
+import { DeleteModal } from "./DeleteModal"
 import { UpdateModal } from "./UpdateModal"
 import toast from "react-hot-toast"
 import {

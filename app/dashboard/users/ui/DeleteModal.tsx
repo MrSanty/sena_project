@@ -1,17 +1,14 @@
 'use client'
 
-import { useMutation, useQueryClient } from "@tanstack/react-query"
-import { destroyUser } from "@/actions/user/destroyUser"
+import { ButtonModalTrigger } from "@/components/ui/ButtonModalTrigger"
 import { TrashIcon } from "@/components/icons"
-import toast from "react-hot-toast"
+import { useDestroyUser } from "@/hooks"
 import {
   Modal,
   ModalContent,
   ModalHeader,
   ModalFooter,
   Button,
-  useDisclosure,
-  Tooltip
 } from "@nextui-org/react"
 import { FC } from "react"
 
@@ -20,50 +17,24 @@ interface DeleteModalProps {
 }
 
 export const DeleteModal: FC<DeleteModalProps> = ({ id }) => {
-  const queryClient = useQueryClient()
-  const { isOpen, onOpen, onOpenChange } = useDisclosure()
-
-  const { mutate } = useMutation({
-    mutationFn: async () => {
-      try {
-        const response = await destroyUser(id)
-        return response
-      } catch (error) {
-        toast.dismiss("destroyUser")
-        toast.error("Ocurrió un error al eliminar el usuario")
-      }
-    },
-    onSuccess: async () => {
-      await queryClient.invalidateQueries({
-        queryKey: ["users"]
-      })
-
-      toast.dismiss("destroyUser")
-      toast.success("Usuario eliminado correctamente")
-      onOpenChange()
-    }
-  })
-
-  const onSubmit = async () => {
-    toast.loading("Eliminando usuario...", {
-      id: "destroyUser"
-    })
-    mutate()
-  }
+  const { 
+    isOpen, 
+    onOpen, 
+    onOpenChange, 
+    onSubmit 
+  } = useDestroyUser(id)
 
   return (
     <>
-      <Tooltip
-        content="Eliminar"
-        color="danger"
-        placement="top"
-      >
-        <button
-          onClick={onOpen}
-        >
-          <TrashIcon className="size-5 text-red-500 hover:fill-red-200" />
-        </button>
-      </Tooltip>
+      <ButtonModalTrigger
+        classNames={{
+          text: "hidden md:inline-block"
+        }}
+        onClick={onOpen}
+        icon={<TrashIcon className="size-5 text-red-500 hover:fill-red-200" />}
+        text="Editar"
+        isAction={true}
+      />
       <Modal isOpen={isOpen} onOpenChange={onOpenChange} disableAnimation size="xl">
         <ModalContent >
           {(onClose) => (
