@@ -1,9 +1,6 @@
 'use server'
+
 import { signIn } from "@/auth"
-import prisma from "@/lib/prisma"
-import bcrypt from "bcryptjs"
-
-
 
 export const login = async (email: string, password: string) => {
   try {
