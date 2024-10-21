@@ -1,6 +1,8 @@
 'use client'
 
-import { useSideBar } from "@/hooks/useSideBar"
+import { SideBarLinks } from "@/components/ui/SideBarLinks"
+import { useSideBar } from "@/hooks"
+import clsx from "clsx"
 import { 
   ArchiveIcon, 
   BuildingIcon, 
@@ -10,8 +12,6 @@ import {
   UserCircleIcon, 
   UserIcon 
 } from "@/components/icons"
-import clsx from "clsx"
-import { SideBarLinks } from "@/components/SideBarLinks"
 
 export const SideBar = () => {
   const { isSidebarOpen, toggleSidebar, isDrawer, toggleDrawer } = useSideBar()

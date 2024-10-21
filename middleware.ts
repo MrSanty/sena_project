@@ -1,5 +1,5 @@
 import { auth } from '@/auth'
-import { NextResponse } from 'next/server';
+import { NextResponse } from 'next/server'
  
 export default auth((req) => {
   if (!req.auth && req.nextUrl.pathname !== "/login") {
@@ -15,5 +15,5 @@ export default auth((req) => {
 })
  
 export const config = {
-  matcher: ['/dashboard/:path*', '/dashboard', '/login'],
-};
+  matcher: ['/dashboard/:path*', '/dashboard', '/login']
+}

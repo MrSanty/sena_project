@@ -1,6 +1,6 @@
 'use client'
 
-import { usePathname } from "next/navigation";
+import { usePathname } from "next/navigation"
 
 export const useBreadCrumb = () => {
   const pathname = usePathname()

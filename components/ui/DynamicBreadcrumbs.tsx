@@ -1,8 +1,7 @@
 'use client'
 
-import { Breadcrumbs, BreadcrumbItem } from '@nextui-org/react';
-import { useBreadCrumb } from '@/hooks';
-import { ChevronRightIcon } from './icons';
+import { Breadcrumbs, BreadcrumbItem } from '@nextui-org/react'
+import { useBreadCrumb } from '@/hooks'
 
 export const DynamicBreadcrumbs = () => {
   const pathnames = useBreadCrumb();

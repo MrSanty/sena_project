@@ -1,9 +1,9 @@
+import { Providers } from "./providers"
+import { SideBar } from "./ui/SideBar"
+import { Navbar } from "./ui/Navbar"
+import { Footer } from "./ui/Footer"
 import type { Metadata } from "next"
 import { FC } from "react"
-import { Providers } from "./providers";
-import { SideBar } from "./ui/SideBar";
-import { Navbar } from "./ui/Navbar";
-import { Footer } from "./ui/Footer";
 
 
 export const metadata: Metadata = {

@@ -1,6 +1,7 @@
 'use client'
+
+import { SessionProvider } from "next-auth/react"
 import { SideBarContext } from "@/hooks"
-import { SessionProvider } from "next-auth/react";
 import { FC, useState } from "react"
 
 export const Providers: FC<{ children: React.ReactNode }> = ({
@@ -16,7 +17,6 @@ export const Providers: FC<{ children: React.ReactNode }> = ({
   const toggleDrawer = () => {
     setIsDrawer(!isDrawer)
   }
-
 
   return (
     <SessionProvider>

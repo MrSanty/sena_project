@@ -1,3 +1,4 @@
+// icon components
 export * from './ArchiveIcon'
 export * from './BuildingIcon'
 export * from './ChevronLeftIcon'

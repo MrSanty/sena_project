@@ -1,24 +1,20 @@
 'use client'
 
-import { MenuIcon } from "@/components/icons"
-import { DynamicBreadcrumbs } from "@/components"
-import { useSideBar } from "@/hooks/useSideBar"
+import { DynamicBreadcrumbs } from "@/components/ui/DynamicBreadcrumbs"
 import { logout } from "@/actions/auth/logout"
+import { useSession } from "next-auth/react"
+import { MenuIcon } from "@/components/icons"
+import { useSideBar } from "@/hooks"
 import { 
   Dropdown, 
   DropdownItem, 
   DropdownMenu, 
-  DropdownTrigger,
-  BreadcrumbItem, 
-  Breadcrumbs 
+  DropdownTrigger
 } from "@nextui-org/react"
-import { useSession } from "next-auth/react"
-import { useRouter } from "next/navigation"
 
 export const Navbar = () => {
   const session = useSession()
   const { toggleDrawer } = useSideBar()
-  const router = useRouter()
 
   return (
     <header className="header flex items-center justify-between px-2 py-2 lg:pl-3 lg:pr-5">

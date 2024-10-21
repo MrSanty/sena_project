@@ -1,6 +1,5 @@
-import Image from "next/image"
 import { AuthForm } from "./ui/AuthForm"
-import { auth } from "@/auth"
+import Image from "next/image"
 
 const Login = async () => {
   return (

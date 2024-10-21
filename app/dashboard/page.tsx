@@ -1,8 +1,6 @@
-import { Development } from "@/components"
-
+import { Development } from "@/components/ui/Development"
 
 const Dashboard = async () => {
-  
   return (
     <Development />
   )

@@ -1,7 +1,7 @@
 'use client'
 
-import { NextUIProvider } from '@nextui-org/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { NextUIProvider } from '@nextui-org/react'
 
 const queryClient = new QueryClient()
 

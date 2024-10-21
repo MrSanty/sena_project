@@ -4,17 +4,15 @@ import { SubmitHandler, useForm } from "react-hook-form"
 import { loginSchema } from "@/validation/loginSchema"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { FormAuthData } from "@/interfaces/LoginData"
+import { EyeIcon, EyeSlashIcon } from "@/components/icons"
 import { Button, Input } from "@nextui-org/react"
 import { useRouter } from "next/navigation"
 import toast from "react-hot-toast"
+import { login } from "@/actions"
 import { useState } from "react"
-import { login } from "@/actions/auth/login"
-import { EyeIcon, EyeSlashIcon } from "@/components/icons"
 
 
 export const AuthForm = () => {
-  
-  
   const [ isVisible, setIsVisible ] = useState(false)
   const router = useRouter()
   const {

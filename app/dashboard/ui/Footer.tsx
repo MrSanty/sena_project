@@ -1,3 +1,4 @@
+
 export const Footer = ({ }) => {
   return (
     <footer className="footer bg-zinc-50 text-center p-4">
