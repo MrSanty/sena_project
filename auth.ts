@@ -17,6 +17,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       async authorize(credentials) {
           const user = await prisma.users.findUnique({
             select: {
+              id: true,
               first_name: true,
               password: true,
               company_id: true,
@@ -64,6 +65,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           ]
   
           return {
+            userid: user.id,
             name: user.first_name,
             company_id: user.company_id,
             permissions
@@ -75,14 +77,16 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     // @ts-ignore
     async jwt({token, user}) {
       if (user) {
+        token.id = user.userid as number
         token.name = user.name as string
-        token.company_id = user.company_id
+        token.company_id = user.company_id 
         token.permissions = user.permissions
       }
       return token
     },
     // @ts-ignore
     async session({session, token}) {
+      session.user.userid = token.userid
       session.user.name = token.name
       session.user.company_id = token.company_id
       session.user.permissions = token.permissions
