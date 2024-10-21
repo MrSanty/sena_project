@@ -13,12 +13,15 @@ import {
   Spinner
 } from "@nextui-org/react"
 import { FC } from "react"
+import { EditModal } from "./EditModal"
+import { DeleteModal } from "./DeleteModal"
 
 interface TableDataProps {
-  company_id: number
+  company_id: number,
+  id: number
 }
 
-export const TableData: FC<TableDataProps> = ({ company_id }) => {
+export const TableData: FC<TableDataProps> = ({ company_id, id }) => {
   const { data, isLoading } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
@@ -31,6 +34,8 @@ export const TableData: FC<TableDataProps> = ({ company_id }) => {
       }
     },
   })
+
+  console.log(id)
 
   return (
     <Table
@@ -55,9 +60,9 @@ export const TableData: FC<TableDataProps> = ({ company_id }) => {
         <TableColumn align="center">
           Rol
         </TableColumn>
-        {/* <TableColumn align="end">
+        <TableColumn align="end">
           Acciones
-        </TableColumn> */}
+        </TableColumn>
       </TableHeader>
       <TableBody
         emptyContent="No hay datos"
@@ -82,23 +87,21 @@ export const TableData: FC<TableDataProps> = ({ company_id }) => {
               <TableCell>
                 Administrador
               </TableCell>
-              {/* <TableCell
+              <TableCell
                 className="flex justify-end gap-2"
               >
                 <EditModal
                   data={item}
-                  editUser={editUser}
                 />
 
                 {
-                  userLogged !== item.email && (
+                  (id !== item.id) && (
                     <DeleteModal
-                      id={`${item.id}`}
-                      deleteUser={deleteUser}
+                      id={item.id}
                     />
                   )
                 }
-              </TableCell> */}
+              </TableCell>
             </TableRow>
           )) || []
         }
