@@ -1,13 +1,13 @@
 declare module "next-auth" {
   interface User {
-    company_id: string
+    company_id: number
     permissions: string[]
   }
 
   interface Session {
     user: {
       name: string
-      company_id: string
+      company_id: number
       permissions: string[]
     }
   }
