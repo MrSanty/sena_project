@@ -1,10 +1,10 @@
 'use client'
 
 import { DynamicBreadcrumbs } from "@/components/ui/DynamicBreadcrumbs"
-import { logout } from "@/actions/auth/logout"
-import { useSession } from "next-auth/react"
 import { MenuIcon } from "@/components/icons"
+import { useSession } from "next-auth/react"
 import { useSideBar } from "@/hooks"
+import { logout } from "@/actions"
 import { 
   Dropdown, 
   DropdownItem, 

@@ -55,8 +55,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   
           if ( !user ) return null
   
-          
-  
           if ( !bcrypt.compareSync(credentials!.password as string, user.password) ) return null
 
           const permissions = [
