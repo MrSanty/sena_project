@@ -1,100 +1,100 @@
 
-# Sena Project
+# Proyecto Sena
 
-Welcome to the Sena Project! This is a web-based ERP system designed to streamline production management and inventory control. Currently, the project is focused on the production module and is in a preliminary version (MVP). It includes user management, roles, inventory, and production tracking.
+¡Bienvenido al Proyecto Sena! Este es un sistema ERP basado en la web, diseñado para optimizar la gestión de la producción y el control de inventarios. Actualmente, el proyecto está enfocado en el módulo de producción y se encuentra en una versión preliminar (MVP). Incluye gestión de usuarios, roles, inventarios y seguimiento de producción.
 
-## Technologies Used
+## Tecnologías Utilizadas
 
-- **Next.js**: A React framework for server-side rendering and generating static websites.
-- **NextAuth.js**: Authentication for Next.js applications.
-- **Tailwind CSS**: A utility-first CSS framework for rapid UI development.
-- **NextUI**: A React UI library for building modern web applications.
-- **TanStack Query**: Powerful data fetching and state management for React.
-- **Bun**: A fast all-in-one JavaScript runtime.
+- **Next.js**: Un framework de React para renderizado del lado del servidor y generación de sitios web estáticos.
+- **NextAuth.js**: Autenticación para aplicaciones Next.js.
+- **Tailwind CSS**: Un framework CSS de utilidades primero para desarrollo rápido de interfaces.
+- **NextUI**: Una biblioteca de componentes UI para construir aplicaciones web modernas.
+- **TanStack Query**: Herramienta potente de obtención de datos y gestión de estado para React.
+- **Bun**: Un entorno de ejecución JavaScript todo en uno y rápido.
 
-## Getting Started
+## Comenzando
 
-To run this project, you need to have Bun installed. Follow the steps below to get started:
+Para ejecutar este proyecto, necesitas tener Bun instalado. Sigue los pasos a continuación para comenzar:
 
-### Prerequisites
+### Prerrequisitos
 
-- **Node.js**: Ensure you have Node.js installed.
-- **Bun**: To install Bun on your system, follow the instructions below depending on your operating system:
+- **Node.js**: Asegúrate de tener Node.js instalado.
+- **Bun**: Para instalar Bun en tu sistema, sigue las instrucciones a continuación según tu sistema operativo:
 
-#### Installing Bun on Linux/macOS:
+#### Instalando Bun en Linux/macOS:
 
 ```sh
 curl -fsSL https://bun.sh/install | bash
 ```
 
-#### Installing Bun on Windows:
+#### Instalando Bun en Windows:
 
-For Windows, you can install Bun through WSL (Windows Subsystem for Linux) or use the `.zip` bundle. Visit [Bun's official installation page](https://bun.sh/docs/install) for detailed steps.
+Para Windows, puedes instalar Bun a través de WSL (Subsistema de Windows para Linux) o usar el paquete `.zip`. Visita la [página oficial de instalación de Bun](https://bun.sh/docs/install) para obtener instrucciones detalladas.
 
-### Installation
+### Instalación
 
-1. **Clone the repository**:
+1. **Clona el repositorio**:
    ```sh
    git clone https://github.com/yourusername/sena_project.git
    cd sena_project
    ```
 
-2. **Install dependencies**:
+2. **Instala las dependencias**:
    ```sh
    bun install
    ```
 
-3. **Set up environment variables**:
-   Copy the `.env.example` file to `.env` and configure the necessary variables:
+3. **Configura las variables de entorno**:
+   Copia el archivo `.env.example` a `.env` y configura las variables necesarias:
    ```sh
    cp .env.example .env
    ```
 
-4. **Running the Project**:
-   To start the development server, run:
+4. **Ejecuta el Proyecto**:
+   Para iniciar el servidor de desarrollo, ejecuta:
    ```sh
    bun dev
    ```
 
-   Open your browser and navigate to `http://localhost:3000` to see the application in action.
+   Abre tu navegador y navega a `http://localhost:3000` para ver la aplicación en acción.
 
-## Project Structure
+## Estructura del Proyecto
 
-- **/actions**: API interaction logic (fetching and mutating data).
-- **/app**: Contains all the Next.js page routes.
-- **/components**: Reusable UI components.
-- **/hooks**: Custom React hooks used throughout the project.
-- **/interfaces**: TypeScript interfaces for typing the data models.
-- **/lib**: Helper functions and third-party integrations.
-- **/prisma**: Configuration for the Prisma ORM and database schema.
-- **/public**: Static assets such as images and fonts.
-- **/utils**: Utility functions for handling data transformations, formatting, etc.
-- **/validations**: Functions and schemas used for validating data and forms.
+- **/actions**: Lógica de interacción con la API (obtención y modificación de datos).
+- **/app**: Contiene todas las rutas de las páginas de Next.js.
+- **/components**: Componentes reutilizables de la interfaz de usuario.
+- **/hooks**: Hooks personalizados de React utilizados en todo el proyecto.
+- **/interfaces**: Interfaces de TypeScript para la tipificación de los modelos de datos.
+- **/lib**: Funciones de ayuda e integraciones con terceros.
+- **/prisma**: Configuración del ORM Prisma y el esquema de la base de datos.
+- **/public**: Activos estáticos como imágenes y fuentes.
+- **/utils**: Funciones utilitarias para el manejo de transformaciones de datos, formato, etc.
+- **/validations**: Funciones y esquemas utilizados para la validación de datos y formularios.
 
-## Authentication
+## Autenticación
 
-This project uses **NextAuth.js** for authentication. The configuration is located in `/pages/api/auth/[...nextauth].js`. Ensure that environment variables related to authentication (like `NEXTAUTH_URL`, `SECRET`, etc.) are properly set.
+Este proyecto utiliza **NextAuth.js** para la autenticación. La configuración se encuentra en `/pages/api/auth/[...nextauth].js`. Asegúrate de que las variables de entorno relacionadas con la autenticación (como `NEXTAUTH_URL`, `SECRET`, etc.) estén configuradas correctamente.
 
-## Styling
+## Estilos
 
-We use **Tailwind CSS** for styling the application. Global styles are defined in the `global.css` file, located in the `/app` folder. You can customize your design by modifying or adding new utility classes.
+Usamos **Tailwind CSS** para el diseño de la aplicación. Los estilos globales están definidos en el archivo `global.css`, ubicado en la carpeta `/app`. Puedes personalizar tu diseño modificando o agregando nuevas clases de Tailwind CSS.
 
-For more information, check the [Tailwind CSS documentation](https://tailwindcss.com/docs).
+Para más información, consulta la [documentación de Tailwind CSS](https://tailwindcss.com/docs).
 
-## UI Components
+## Componentes UI
 
-**NextUI** is used for the UI component library. Refer to the [NextUI documentation](https://nextui.org/docs) for more details on customization and usage.
+Se utiliza **NextUI** como biblioteca de componentes UI. Consulta la [documentación de NextUI](https://nextui.org/docs) para obtener más detalles sobre personalización y uso.
 
-## Data Fetching
+## Obtención de Datos
 
-We leverage **TanStack Query** to handle all data fetching and synchronization logic. The API interaction functions are located in the `/actions` folder, where each function handles specific API calls and manages their respective states.
+Utilizamos **TanStack Query** para manejar toda la lógica de obtención de datos y sincronización. Las funciones de interacción con la API están ubicadas en la carpeta `/actions`, donde cada función maneja llamadas a la API específicas y administra sus respectivos estados.
 
-For more advanced usage, visit the [TanStack Query documentation](https://tanstack.com/query/latest).
+Para un uso más avanzado, visita la [documentación de TanStack Query](https://tanstack.com/query/latest).
 
-## License
+## Licencia
 
-This project is the private property of the **Centro de Automatización Industrial SENNOVA - Regional Caldas** in Colombia and is not open for external contributions. It is intended for private use within authorized environments only.
+Este proyecto es propiedad privada del **Centro de Automatización Industrial SENNOVA - Regional Caldas** en Colombia y no está abierto a contribuciones externas. Está destinado únicamente para uso privado en entornos autorizados.
 
 ---
 
-Thank you for checking out the Sena Project! If you have any questions, feel free to open an issue or contact us.
+Gracias por revisar el Proyecto Sena. Si tienes alguna pregunta, no dudes en abrir un issue o contactarnos.
