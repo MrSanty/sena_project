@@ -3,9 +3,47 @@
 @tailwind utilities;
 
 @layer utilities {
-  
+  .sidebar {
+    grid-area: sidebar;
+  }
 }
 
 *:focus-visible {
   outline: none;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto 1fr; 
+  grid-template-rows: 1fr 7fr 7fr 1fr;
+  grid-template-areas: 
+    "header header"
+    "main main"
+    "main main"
+    "footer footer";
+}
+
+.header {
+  grid-area: header;
+}
+
+.main {
+  grid-area: main;
+}
+
+.footer {
+  grid-area: footer;
+}
+
+@media (min-width: 1024px) {
+  .grid-container {
+    display: grid;
+    grid-template-columns: auto 1fr; 
+    grid-template-rows: 1fr 7fr 7fr 1fr;
+    grid-template-areas: 
+      "sidebar header"
+      "sidebar main"
+      "sidebar main"
+      "footer footer";
+  }
 }
