@@ -94,7 +94,3 @@ Para un uso más avanzado, visita la [documentación de TanStack Query](https://
 ## Licencia
 
 Este proyecto es propiedad privada del **Centro de Automatización Industrial SENNOVA - Regional Caldas** en Colombia y no está abierto a contribuciones externas. Está destinado únicamente para uso privado en entornos autorizados.
-
----
-
-Gracias por revisar el Proyecto Sena. Si tienes alguna pregunta, no dudes en abrir un issue o contactarnos.
