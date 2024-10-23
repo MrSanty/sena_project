@@ -65,7 +65,7 @@ export const TableData: FC<TableDataProps> = ({ company_id, id }) => {
       <TableBody
         emptyContent="No hay datos"
         loadingState={isLoading ? "loading" : "idle"}
-        loadingContent={<Spinner size="sm" />}
+        loadingContent={<Spinner label="Cargando datos" size="md" />}
       >
         {
           data?.map((item, index) => (
