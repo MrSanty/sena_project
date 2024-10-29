@@ -1,9 +1,9 @@
 'use client'
 
-import { getUsers } from "@/actions/user/getUsers"
 import { useQuery } from "@tanstack/react-query"
 import { DeleteModal } from "./DeleteModal"
 import { UpdateModal } from "./UpdateModal"
+import { getUsers } from "@/actions"
 import toast from "react-hot-toast"
 import {
   Table,

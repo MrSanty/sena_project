@@ -13,7 +13,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         email: {},
         password: {}
       },
-      // @ts-ignore
       async authorize(credentials) {
           const user = await prisma.users.findUnique({
             select: {
@@ -72,7 +71,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     })
   ],
   callbacks: {
-    // @ts-ignore
     async jwt({token, user}) {
       if (user) {
         token.userId = user.userId as number
@@ -82,7 +80,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       }
       return token
     },
-    // @ts-ignore
     async session({session, token}) {
       session.user.userId = token.userId
       session.user.name = token.name
