@@ -1,22 +1,43 @@
-'use server'
+'use server';
 
-import prisma from "@/lib/prisma"
+import prisma from '@/lib/prisma';
 
-export const getUsers = async (companyId: number) => {
+export const getUsers = async (companyId: number, search: string) => {
   try {
     const users = await prisma.users.findMany({
       where: {
-        company_id: companyId
+        company_id: companyId,
+        OR: [
+          {
+            first_name: {
+              contains: search,
+              mode: 'insensitive',
+            },
+          },
+          {
+            last_name: {
+              contains: search,
+              mode: 'insensitive',
+            },
+          },
+          {
+            email: {
+              contains: search,
+              mode: 'insensitive',
+            },
+          },
+        ],
       },
       orderBy: [
         {
-          id: 'asc'
-        }
-      ]
-    })
+          id: 'asc',
+        },
+      ],
+    });
 
-    return users
+    return users;
   } catch (error: any) {
-    throw new Error(error)
+    console.log(error);
+    throw new Error(error);
   }
-}
+};
