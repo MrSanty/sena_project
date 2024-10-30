@@ -9,3 +9,8 @@ export * from './auth/useLogin'
 export * from './users/useAddUser'
 export * from './users/useUpdateUser'
 export * from './users/useDestroyUser'
+
+// stock hooks
+export * from './stock/useAddStock'
+export * from './stock/useUpdateStock'
+export * from './stock/useDestroyStock'
