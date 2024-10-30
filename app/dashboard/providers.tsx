@@ -7,8 +7,8 @@ import { FC, useState } from "react"
 export const Providers: FC<{ children: React.ReactNode }> = ({
   children
 }) => {
-  const [ isSidebarOpen, setIsSidebarOpen ] = useState(false);
-  const [ isDrawer, setIsDrawer ] = useState(false);
+  const [ isSidebarOpen, setIsSidebarOpen ] = useState(false)
+  const [ isDrawer, setIsDrawer ] = useState(false)
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen)

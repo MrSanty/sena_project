@@ -1,8 +1,8 @@
 'use client'
 
 import { useQuery } from "@tanstack/react-query"
-import { DeleteModal } from "./DeleteModal"
-import { UpdateModal } from "./UpdateModal"
+import { DeleteModal } from "../modals/DeleteModal"
+import { UpdateModal } from "../modals/UpdateModal"
 import { getUsers } from "@/actions"
 import toast from "react-hot-toast"
 import {
@@ -17,8 +17,8 @@ import {
 import { FC } from "react"
 
 interface TableDataProps {
-  company_id: number,
-  id: number
+  company_id: number;
+  id: number;
 }
 
 export const TableData: FC<TableDataProps> = ({ company_id, id }) => {

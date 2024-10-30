@@ -4,7 +4,7 @@ import { Breadcrumbs, BreadcrumbItem } from '@nextui-org/react'
 import { useBreadCrumb } from '@/hooks'
 
 export const DynamicBreadcrumbs = () => {
-  const pathnames = useBreadCrumb();
+  const pathnames = useBreadCrumb()
 
   return (
     <Breadcrumbs

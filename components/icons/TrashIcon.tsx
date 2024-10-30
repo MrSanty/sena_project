@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC } from "react"
 
 interface TrashIconProps {
   className?: string;

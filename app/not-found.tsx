@@ -12,6 +12,6 @@ const NotFoundPage = () => {
         </Link>
       </div>
     </div>
-  );
-};
+  )
+}
 export default NotFoundPage

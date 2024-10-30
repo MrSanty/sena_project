@@ -66,5 +66,5 @@ export const DeleteModal: FC<DeleteModalProps> = ({ id }) => {
         </ModalContent>
       </Modal>
     </>
-  );
+  )
 }

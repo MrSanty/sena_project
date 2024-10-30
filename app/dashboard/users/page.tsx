@@ -1,4 +1,4 @@
-import { CreateModal } from "./ui/CreateModal"
+import { CreateModal } from "./modals/CreateModal"
 import { TableData } from "./ui/TableData"
 import { auth } from "@/auth"
 
