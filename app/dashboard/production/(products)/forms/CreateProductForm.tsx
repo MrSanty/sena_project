@@ -46,12 +46,8 @@ export const CreateProductForm: FC<CreateProductFormProps> = ({
   const { mutate } = useMutation({
     mutationFn: async (data: any) => {
       try {
-        try {
-          const product = await addProduct(data)
-          return product
-        } catch (error) {
-          throw new Error(error as string)
-        }
+        const product = await addProduct(data)
+        return product
       } catch (error) {
         throw new Error(error as string)
       }
