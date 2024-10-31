@@ -2,11 +2,31 @@
 
 import prisma from "@/lib/prisma"
 
-export const getStock = async (companyId: number) => {
+export const getStock = async (companyId: number, search: string) => {
   try {
     const stock = await prisma.stock.findMany({
       where: {
-        company_id: companyId
+        company_id: companyId,
+        OR: [
+          {
+            name: {
+              contains: search,
+              mode: "insensitive"
+            }
+          },
+          {
+            description: {
+              contains: search,
+              mode: "insensitive"
+            }
+          },
+          {
+            code: {
+              contains: search,
+              mode: "insensitive"
+            }
+          }
+        ]
       }
     })
 

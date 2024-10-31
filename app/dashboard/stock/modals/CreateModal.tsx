@@ -31,7 +31,7 @@ export const CreateModal: FC<CreateModalProps> = ({
           text: "hidden md:inline-block"
         }}
         onClick={onOpen}
-        icon={<PlusIcon className="size-4" />}
+        icon={<PlusIcon className="m-0 sm:mr-1 size-4" />}
         text="Agregar"
         isAction={false}
       />

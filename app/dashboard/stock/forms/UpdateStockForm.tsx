@@ -61,16 +61,16 @@ export const UpdateStockForm: FC<UpdateStockFormProps> = ({
           isInvalid={errors.unit_type ? true : false}
           errorMessage={errors.unit_type ? errors.unit_type.message : ''}
         >
-          <SelectItem key="unidad" value="Cantidad">
+          <SelectItem key="Cantidad" value="Cantidad">
             Cantidad
           </SelectItem>
-          <SelectItem key="kilogramo" value="Kilogramo">
+          <SelectItem key="Kilogramo" value="Kilogramo">
             Kilogramo
           </SelectItem>
-          <SelectItem key="litro" value="Litro">
+          <SelectItem key="Litro" value="Litro">
             Litro
           </SelectItem>
-          <SelectItem key="metro" value="Metro">
+          <SelectItem key="Metro" value="Metro">
             Metro
           </SelectItem>
         </Select>

@@ -5,6 +5,7 @@ import { CreateModal } from "../modals/CreateModal"
 import { UpdateModal } from "../modals/UpdateModal"
 import { DeleteModal } from "../modals/DeleteModal"
 import { FC, useEffect, useState } from "react"
+import { SearchIcon } from "@/components/icons"
 import { getUsers } from "@/actions"
 import toast from "react-hot-toast"
 import {
@@ -17,7 +18,6 @@ import {
   Spinner,
   Input
 } from "@nextui-org/react"
-import { SearchIcon } from "@/components/icons"
 
 interface TableDataProps {
   company_id: number;
@@ -25,22 +25,9 @@ interface TableDataProps {
 }
 
 export const TableData: FC<TableDataProps> = ({ company_id, id }) => {
-  const [search, setSearch] = useState("")
-
-  const onSearchChange = (value: string) => {
-    setSearch(value)
-  }
-
-  const onClear = () => {
-    setSearch("")
-  }
-
-  useEffect(() => {
-    refetch()
-  }, [search])
-
+  const [ search, setSearch ] = useState("")
   const { data, isLoading, refetch } = useQuery({
-    queryKey: ["users", { search }],
+    queryKey: [ "users", { search } ],
     queryFn: async () => {
       try {
         const data = await getUsers(company_id, search)
@@ -51,23 +38,33 @@ export const TableData: FC<TableDataProps> = ({ company_id, id }) => {
       }
     }
   })
+  useEffect(() => {
+    refetch()
+  }, [ search ])
+
+  const onSearchChange = (value: string) => {
+    setSearch(value)
+  }
+  const onClear = () => {
+    setSearch("")
+  }
 
   return (
     <>
       <div className="flex justify-between items-center mb-3">
         <div className="flex items-start flex-col sm:flex-row sm:items-center gap-1">
-            <Input
-              isClearable
-              className="w-full"
-              variant="bordered"
-              placeholder="Buscar un usuario por nombre completo o email"
-              size="sm"
-              startContent={<SearchIcon className="size-4" />}
-              value={search}
-              onClear={() => onClear()}
-              onValueChange={onSearchChange}
-            />
-          </div>
+          <Input
+            isClearable
+            className="w-full"
+            variant="bordered"
+            placeholder="Buscar un usuario"
+            size="sm"
+            startContent={<SearchIcon className="size-4" />}
+            value={search}
+            onClear={() => onClear()}
+            onValueChange={onSearchChange}
+          />
+        </div>
 
         <CreateModal
           company_id={company_id}
