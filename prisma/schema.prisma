@@ -22,6 +22,14 @@ enum UnitType {
   Metro
 }
 
+enum Status {
+  Proceso
+  Retrasado
+  Suspendido
+  Problema
+  Finalizado
+}
+
 model companies {
   id         Int      @id @default(autoincrement())
   nit        String   @unique
@@ -40,6 +48,7 @@ model stock {
   quantity    Int
   unit_type   UnitType
   company_id  Int
+  product_stocks product_stock[]
   created_at  DateTime @default(now())
   updated_at  DateTime @updatedAt
 
@@ -115,4 +124,39 @@ model user_permissions {
   permission    permissions @relation(fields: [permission_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   @@id([user_id, permission_id])
+}
+
+model products {
+  id          Int      @id @default(autoincrement())
+  name        String
+  prod_time   Int
+  product_stocks product_stock[]
+  productions production[]
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+}
+
+model product_stock {
+  product_id Int
+  stock_id   Int
+  quantity   Int
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  product    products @relation(fields: [product_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  stock      stock    @relation(fields: [stock_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  @@id([product_id, stock_id])
+}
+
+model production {
+  id          Int      @id @default(autoincrement())
+  product_id  Int
+  quantity    Int
+  status      Status   
+  estimated_time Int    
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+
+  product     products @relation(fields: [product_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
 }

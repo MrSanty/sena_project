@@ -16,6 +16,7 @@
   display: grid;
   grid-template-columns: auto 1fr; 
   grid-template-rows: 1fr 7fr 7fr 1fr;
+  max-height: 100dvh;
   grid-template-areas: 
     "header header"
     "main main"
