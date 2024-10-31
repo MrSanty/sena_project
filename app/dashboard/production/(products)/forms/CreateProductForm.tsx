@@ -144,7 +144,7 @@ export const CreateProductForm: FC<CreateProductFormProps> = ({
           variant="light"
           size="sm"
         >
-          + Agregar Elemento
+          + Agregar Material
         </Button>
       </div>
       <div className="grid grid-cols-2 gap-5">

@@ -26,6 +26,12 @@ export const getUsers = async (companyId: number, search: string) => {
               mode: 'insensitive',
             },
           },
+          {
+            num_doc: {
+              contains: search,
+              mode: 'insensitive'
+            },
+          }
         ],
       },
       orderBy: [
