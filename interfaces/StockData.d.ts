@@ -24,6 +24,11 @@ export type CreateStockServer = CreateFormStock & {
   company_id: number;
 }
 
+export type CreateMultipleStockServer = CreateFormStock & {
+  company_id: number;
+  quantity: number;
+}
+
 export type UpdateStockServer = CreateFormStock & {
   id: number;
 }

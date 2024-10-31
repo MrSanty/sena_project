@@ -12,5 +12,6 @@ export * from './users/useDestroyUser'
 
 // stock hooks
 export * from './stock/useAddStock'
+export * from './stock/useAddMasive'
 export * from './stock/useUpdateStock'
 export * from './stock/useDestroyStock'
