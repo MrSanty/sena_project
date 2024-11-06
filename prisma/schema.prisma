@@ -44,7 +44,7 @@ model stock {
   id          Int      @id @default(autoincrement())
   code        String   @unique
   name        String
-  description String?
+  description String
   quantity    Int
   unit_type   UnitType
   company_id  Int
@@ -60,8 +60,8 @@ model users {
   type_doc         TypeDoc
   num_doc          String             @unique
   email            String             @unique 
-  first_name       String?            @db.VarChar(255)
-  last_name        String?            @db.VarChar(255)
+  first_name       String             @db.VarChar(255)
+  last_name        String             @db.VarChar(255)
   password         String 
   company_id       Int
   user_roles       user_roles[]       
