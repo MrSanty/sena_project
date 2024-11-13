@@ -161,6 +161,7 @@ export const Process = () => {
                             item.status === "Problema" ? "danger" : "warning"
                       }
                       size="sm"
+                      variant="flat"
                     >
                       {item.status}
                     </Chip>
