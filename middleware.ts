@@ -7,7 +7,7 @@ export default auth((req) => {
   }
 
   if (req.nextUrl.pathname === "/login" && req.auth) {
-    return NextResponse.redirect(new URL('/dashboard', req.url))
+    return NextResponse.redirect(new URL('/dashboard/users', req.url))
   }
 
 
