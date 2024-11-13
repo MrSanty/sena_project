@@ -97,7 +97,7 @@ export const CreateProductForm: FC<CreateProductFormProps> = ({
           isInvalid={!!errors.production_time}
         />
       </div>
-      <div className="space-y-4">
+      <div className="space-y-4 max-h-80 overflow-y-auto">
         {fields.map((item, index) => (
           <div key={item.id} className="gridProduct">
             <Select
