@@ -26,7 +26,7 @@ export const useLogin = () => {
     if (loggedIn) {
       toast.dismiss('login')
       toast.success('Sesión iniciada correctamente')
-      router.push('/dashboard')
+      router.push('/dashboard/users')
     } else {
       toast.dismiss('login')
       toast.error('Credenciales incorrectas')
