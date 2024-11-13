@@ -11,6 +11,7 @@ import { format } from "date-fns"
 import { es } from "date-fns/locale"
 import { UpdateModal } from "./modals/UpdateModal"
 import { DeleteModal } from "./modals/DeleteModal"
+import clsx from 'clsx';
 
 interface ProductsProps {
   company_id: number;
@@ -87,7 +88,7 @@ export const Products: FC<ProductsProps> = ({
 
         {
           !isLoading && data?.length! > 0 && (
-            <Accordion variant="splitted" className="flex flex-col gap-2 w-full">
+            <Accordion variant="splitted" className="flex flex-col gap-2 w-full p-0">
               {
                 data?.map((product: any) => (
                   <AccordionItem
@@ -108,17 +109,40 @@ export const Products: FC<ProductsProps> = ({
                       <span>Ultima actualización: <strong>{format(new Date(product.updated_at), "dd 'de' MMMM 'de' yyyy", { locale: es })}</strong></span>
                     }
                     className="pb-4"
+                    classNames={{
+                      base: "shadow-none border border-gray-200 rounded-md",
+                    }}
                   >
                     <div className="flex flex-col gap-2">
+                      <div className="flex justify-between items-center">
+                        <h2 className="font-semibold text-gray-600">Ingredientes</h2>
+                        <span className="font-semibold text-gray-600">Cantidad</span>
+
+                      </div>
                       {
-                        product.product_stocks.map((stock: any) => (
-                          <div key={stock.stock.id} className="flex justify-between items-center">
+                        product.product_stocks.map((stock: any, index: number) => (
+                          <div key={stock.stock.id} className={clsx([
+                            "flex justify-between items-center py-2",
+                            {
+                              "border-b border-gray-200 ": index !== product.product_stocks.length - 1,
+                              "pb-3": index === product.product_stocks.length - 1
+                            }
+                          ])}>
                             <div>
-                              <h2 className="text-md">{stock.stock.name}</h2>
-                              <span className="text-sm text-gray-400">{stock.stock.unit_type}</span>
+                              <h2 className="text-base">{stock.stock.name}</h2>
                             </div>
                             <div>
-                              <span className="text-md">{stock.quantity}</span>
+                              <span className="text-md">
+                                {stock.quantity}
+
+                                {
+                                  stock.quantity > 1
+                                    ? stock.stock.unit_type === "Cantidad"
+                                      ? " unidades"
+                                      : " " + stock.stock.unit_type + "s"
+                                    : " " + stock.stock.unit_type
+                                }
+                              </span>
                             </div>
                           </div>
                         ))

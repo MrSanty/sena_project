@@ -59,7 +59,7 @@ export const AuthForm = () => {
           }
         />
       </div>
-      <div className="flex items-center justify-end">
+      {/* <div className="flex items-center justify-end">
         <div className="text-sm">
           <a
             href="#"
@@ -68,7 +68,7 @@ export const AuthForm = () => {
             ¿Olvidaste tu contraseña?
           </a>
         </div>
-      </div>
+      </div> */}
       <div>
         <Button
           type="submit"

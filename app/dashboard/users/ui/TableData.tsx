@@ -16,7 +16,9 @@ import {
   TableRow,
   TableCell,
   Spinner,
-  Input
+  Input,
+  Select,
+  SelectItem
 } from "@nextui-org/react"
 
 interface TableDataProps {
@@ -26,11 +28,12 @@ interface TableDataProps {
 
 export const TableData: FC<TableDataProps> = ({ company_id, id }) => {
   const [ search, setSearch ] = useState("")
+  const [ type_doc, setTypeDoc ] = useState("")
   const { data, isLoading, refetch } = useQuery({
     queryKey: [ "users", { search } ],
     queryFn: async () => {
       try {
-        const data = await getUsers(company_id, search)
+        const data = await getUsers(company_id, search, type_doc)
         return data
       } catch (error) {
         toast.error("Error al obtener los usuarios")
@@ -40,7 +43,7 @@ export const TableData: FC<TableDataProps> = ({ company_id, id }) => {
   })
   useEffect(() => {
     refetch()
-  }, [ search ])
+  }, [ search, type_doc ])
 
   const onSearchChange = (value: string) => {
     setSearch(value)
@@ -52,7 +55,7 @@ export const TableData: FC<TableDataProps> = ({ company_id, id }) => {
   return (
     <>
       <div className="flex justify-between items-center mb-3">
-        <div className="flex items-start flex-col sm:flex-row sm:items-center gap-1">
+        <div className="flex items-start flex-col w-full sm:flex-row sm:items-center gap-1 sm:w-auto">
           <Input
             isClearable
             className="w-full"
@@ -64,6 +67,32 @@ export const TableData: FC<TableDataProps> = ({ company_id, id }) => {
             onClear={() => onClear()}
             onValueChange={onSearchChange}
           />
+
+          <Select
+            className="w-full"
+            size="sm" 
+            variant="bordered"
+            radius="sm"
+            placeholder="Selecciona un tipo de documento"
+            value={type_doc}
+            onChange={(e) => setTypeDoc(e.target.value)}
+          >
+            <SelectItem key="CC" value="CC">
+              CC
+            </SelectItem>
+            <SelectItem key="CE" value="CE">
+              CE
+            </SelectItem>
+            <SelectItem key="TI" value="TI">
+              TI
+            </SelectItem>
+            <SelectItem key="PPT" value="PPT">
+              PPT
+            </SelectItem>
+            <SelectItem key="PST" value="PST">
+              PST
+            </SelectItem>
+          </Select>
         </div>
 
         <CreateModal

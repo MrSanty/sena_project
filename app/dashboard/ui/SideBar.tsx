@@ -24,12 +24,12 @@ export const SideBar = () => {
       activeName: "user",
       pathRedirect: "/dashboard/users"
     },
-    {
+    /* {
       name: "Roles y Permisos",
       icon: <UserCircleIcon className="size-5" />,
       activeName: "role",
       pathRedirect: "/dashboard/roles"
-    },
+    }, */
     {
       name: "Inventario",
       icon: <ArchiveIcon className="size-5" />,

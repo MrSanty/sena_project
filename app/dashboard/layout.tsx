@@ -25,7 +25,7 @@ const DashboardLayout: FC<DashboardLayoutProps> = ({ children }) => {
         <Navbar />
       </Providers>
       <main
-        className="main py-5 px-2 lg:px-5"
+        className="main py-5 px-2 lg:px-5 overflow-y-auto"
       >
         {children}
       </main>

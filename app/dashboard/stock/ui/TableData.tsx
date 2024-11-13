@@ -19,7 +19,9 @@ import {
   TableRow,
   TableCell,
   Spinner,
-  Input
+  Input,
+  Pagination,
+  Chip
 } from "@nextui-org/react"
 
 interface TableDataProps {
@@ -29,12 +31,16 @@ interface TableDataProps {
 
 export const TableData: FC<TableDataProps> = ({ company_id, id }) => {
   const [ search, setSearch ] = useState("")
+  const [ page, setPage ] = useState(1)
+  const [ pages, setPages ] = useState(1)
   const { data, isLoading, refetch } = useQuery({
-    queryKey: [ "stock", { search } ],
+    queryKey: [ "stock", { search, page } ],
     queryFn: async () => {
       try {
-        const data = await getStock(company_id, search)
-        return data
+        const data = await getStock(company_id, search, page)
+        const totalPage = Math.ceil(data.total / 5)
+        setPages(totalPage)
+        return data.stock
       } catch (error) {
         console.error(error)
         toast.error("Error al obtener los datos")
@@ -44,12 +50,14 @@ export const TableData: FC<TableDataProps> = ({ company_id, id }) => {
   })
   useEffect(() => {
     refetch()
-  }, [ search ])
+  }, [ search, page ])
 
   const onSearchChange = (value: string) => {
+    setPage(1)
     setSearch(value)
   }
   const onClear = () => {
+    setPage(1)
     setSearch("")
   }
 
@@ -82,6 +90,18 @@ export const TableData: FC<TableDataProps> = ({ company_id, id }) => {
         <Table
           radius="md"
           isStriped
+          bottomContent={
+            <div className="flex w-full justify-center">
+              <Pagination
+                isCompact
+                showControls
+                page={page}
+                total={pages}
+                size="sm"
+                onChange={(page) => setPage(page)}
+              />
+            </div>
+          }
         >
           <TableHeader>
             <TableColumn
@@ -117,6 +137,7 @@ export const TableData: FC<TableDataProps> = ({ company_id, id }) => {
             loadingContent={<Spinner label="Cargando datos" size="md" />}
           >
             {
+              // @ts-ignore
               data?.map((item, index) => (
                 <TableRow key={index}>
                   <TableCell>
@@ -132,7 +153,11 @@ export const TableData: FC<TableDataProps> = ({ company_id, id }) => {
                     {item.quantity}
                   </TableCell>
                   <TableCell>
-                    {item.unit_type}
+                    <Chip
+                      variant="bordered"
+                    >
+                      {item.unit_type}
+                    </Chip>
                   </TableCell>
                   <TableCell>
                     {format(new Date(item.created_at), "dd 'de' MMMM 'de' yyyy", { locale: es })}

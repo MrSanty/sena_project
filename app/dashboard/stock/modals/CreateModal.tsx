@@ -19,7 +19,8 @@ interface CreateModalProps {
 
 export const CreateModal: FC<CreateModalProps> = ({
   className,
-  company_id
+  company_id,
+  
 }) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure()
 

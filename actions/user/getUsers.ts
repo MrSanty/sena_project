@@ -2,11 +2,31 @@
 
 import prisma from '@/lib/prisma';
 
-export const getUsers = async (companyId: number, search: string) => {
+export const getUsers = async (
+  companyId: number, 
+  search: string, 
+  typeDoc?: string
+) => {
   try {
+    let where = {}
+
+    if (!typeDoc) {
+      where = {
+        company_id: companyId
+      }
+    } else {
+      where = {
+        company_id: companyId,
+        type_doc: typeDoc
+      }
+    }
+
+
     const users = await prisma.users.findMany({
       where: {
-        company_id: companyId,
+        AND: [
+          where,
+        ],
         OR: [
           {
             first_name: {
@@ -32,7 +52,7 @@ export const getUsers = async (companyId: number, search: string) => {
               mode: 'insensitive'
             },
           }
-        ],
+        ]
       },
       orderBy: [
         {
