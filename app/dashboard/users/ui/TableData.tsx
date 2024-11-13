@@ -104,6 +104,9 @@ export const TableData: FC<TableDataProps> = ({ company_id, id }) => {
         <Table
           radius="md"
           isStriped
+          classNames={{
+            wrapper: "shadow-none border border-gray-300",
+          }}
         >
           <TableHeader>
             <TableColumn

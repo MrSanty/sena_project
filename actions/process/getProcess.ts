@@ -2,8 +2,29 @@
 
 import prisma from "@/lib/prisma"
 
-export const getProcess = async (search: string) => {
+export const getProcess = async (search: string, status: string) => {
   try {
+    let filters = {}
+
+    if (!status) {
+      filters = {
+        name: {
+          contains: search,
+          mode: "insensitive"
+        }
+      }
+    } else {
+      filters = {
+        name: {
+          contains: search,
+          mode: "insensitive"
+        },
+        status: {
+          equals: status
+        }
+      }
+    }
+
     const processes = await prisma.production.findMany({
       include: {
         product: {
@@ -14,12 +35,7 @@ export const getProcess = async (search: string) => {
           }
         }
       },
-      where: {
-        name: {
-          contains: search,
-          mode: "insensitive"
-        }
-      }
+      where: filters
     })
     return processes
   } catch (error) {

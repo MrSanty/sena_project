@@ -17,6 +17,7 @@ import { UpdateProductForm } from "../forms/UpdateProductForm"
 import { useQuery } from "@tanstack/react-query"
 import { getStock } from "@/actions"
 import toast from "react-hot-toast"
+import { getAllStock } from "@/actions/stock/getAllStock"
 
 interface UpdateModalProps {
   className?: string;
@@ -31,7 +32,7 @@ export const UpdateModal: FC<UpdateModalProps> = ({
     queryKey: [ "stock" ],
     queryFn: async () => {
       try {
-        const data = await getStock(1, "")
+        const data = await getAllStock(1)
         return data
       } catch (error) {
         toast.error("Error al obtener los datos")

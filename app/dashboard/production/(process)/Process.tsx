@@ -19,7 +19,10 @@ import {
   TableRow,
   TableCell,
   Spinner,
-  Input
+  Input,
+  Chip,
+  Select,
+  SelectItem
 } from "@nextui-org/react"
 import { getProcess } from "@/actions/process/getProcess"
 import { CreateModal } from "./modals/CreateModal"
@@ -28,11 +31,12 @@ import { DeleteModal } from "./modals/DeleteModal"
 
 export const Process = () => {
   const [ search, setSearch ] = useState("")
+  const [ status, setStatus ] = useState("")
   const { data, isLoading, refetch } = useQuery({
     queryKey: [ "process", search ],
     queryFn: async () => {
       try {
-        const data = await getProcess(search)
+        const data = await getProcess(search, status)
         return data
       } catch (error) {
         console.error(error)
@@ -43,7 +47,7 @@ export const Process = () => {
   })
   useEffect(() => {
     refetch()
-  }, [ search ])
+  }, [ search, status ])
 
   const onSearchChange = (value: string) => {
     setSearch(value)
@@ -60,27 +64,57 @@ export const Process = () => {
             isClearable
             className="w-full"
             variant="bordered"
-            placeholder="Buscar proceso"
+            placeholder="Buscar"
             size="sm"
             startContent={<SearchIcon className="size-4" />}
             value={search}
             onClear={() => onClear()}
             onValueChange={onSearchChange}
           />
+
+          <div className="w-full flex gap-1">
+            <Select
+              className="w-full"
+              placeholder="Estado"
+              variant="bordered"
+              size="sm"
+              value={status}
+              onChange={(e) => setStatus(e.target.value)}
+            >
+              <SelectItem key="Proceso" value="Proceso">
+                Proceso
+              </SelectItem>
+              <SelectItem key="Suspendido" value="Suspendido">
+                Suspendido
+              </SelectItem>
+              <SelectItem key="Problema" value="Problema">
+                Problema
+              </SelectItem>
+              <SelectItem key="Finalizado" value="Finalizado">
+                Finalizado
+              </SelectItem>
+            </Select>
+
+            <CreateModal
+              company_id={1}
+              className="sm:hidden"
+            />
+          </div>
         </div>
 
         <div className="hidden sm:flex sm:gap-1">
           <CreateModal
             company_id={1}
           />
-
-         {/*  <UploadButton company_id={company_id} /> */}
         </div>
       </div>
       <div className="overflow-x-auto rounded-md">
         <Table
           radius="md"
           isStriped
+          classNames={{
+            wrapper: "shadow-none border border-gray-300",
+          }}
         >
           <TableHeader>
             <TableColumn align="center">
@@ -120,7 +154,16 @@ export const Process = () => {
                     {item.name}
                   </TableCell>
                   <TableCell>
-                    {item.status}
+                    <Chip
+                      color={
+                        item.status === "Proceso" ? "primary" :
+                          item.status === "Finalizado" ? "success" :
+                            item.status === "Problema" ? "danger" : "warning"
+                      }
+                      size="sm"
+                    >
+                      {item.status}
+                    </Chip>
                   </TableCell>
                   <TableCell>
                     {item.product.name}

@@ -36,6 +36,11 @@
   grid-area: footer;
 }
 
+.gridProduct {
+  @apply grid gap-2 items-end;
+  grid-template-columns: 1fr 1fr auto;
+}
+
 @media (min-width: 1024px) {
   .grid-container {
     display: grid;

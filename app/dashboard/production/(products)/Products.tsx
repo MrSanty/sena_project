@@ -66,7 +66,6 @@ export const Products: FC<ProductsProps> = ({
 
         <CreateModal
           company_id={company_id}
-          className="hidden sm:flex"
         />
       </div>
       <div className="overflow-x-auto min-h-80 rounded-md">
@@ -124,7 +123,7 @@ export const Products: FC<ProductsProps> = ({
                           <div key={stock.stock.id} className={clsx([
                             "flex justify-between items-center py-2",
                             {
-                              "border-b border-gray-200 ": index !== product.product_stocks.length - 1,
+                              "border-b border-gray-300 ": index !== product.product_stocks.length - 1,
                               "pb-3": index === product.product_stocks.length - 1
                             }
                           ])}>

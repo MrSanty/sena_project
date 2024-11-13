@@ -8,6 +8,7 @@ import { getStock } from "@/actions";
 import toast from "react-hot-toast";
 import { TrashIcon } from "@/components/icons";
 import { addProduct } from "@/actions/product/addProduct";
+import { getAllStock } from "@/actions/stock/getAllStock";
 
 interface CreateProductFormProps {
   company_id: number;
@@ -34,7 +35,7 @@ export const CreateProductForm: FC<CreateProductFormProps> = ({
     queryKey: [ "stock" ],
     queryFn: async () => {
       try {
-        const data = await getStock(company_id, "")
+        const data = await getAllStock(company_id)
         return data
       } catch (error) {
         toast.error("Error al obtener los datos")
@@ -98,7 +99,7 @@ export const CreateProductForm: FC<CreateProductFormProps> = ({
       </div>
       <div className="space-y-4">
         {fields.map((item, index) => (
-          <div key={item.id} className="grid grid-cols-3 gap-2 items-end">
+          <div key={item.id} className="gridProduct">
             <Select
               {...register(`stock.${index}.product_id`, { required: "Elemento es requerido" })}
               label="Material"
@@ -129,7 +130,7 @@ export const CreateProductForm: FC<CreateProductFormProps> = ({
               variant="light"
               size="sm"
               onClick={() => remove(index)}
-              className="mb-1"
+              className="mb-1 w-5"
             >
               <TrashIcon className="size-4" />
             </Button>

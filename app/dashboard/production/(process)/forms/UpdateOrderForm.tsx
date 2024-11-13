@@ -124,9 +124,6 @@ export const UpdateOrderForm: FC<UpdateOrderFormProps> = ({
           <SelectItem key="Proceso" value="Proceso">
             Proceso
           </SelectItem>
-          <SelectItem key="Retrasado" value="Retrasado">
-            Retrasado
-          </SelectItem>
           <SelectItem key="Suspendido" value="Suspendido">
             Suspendido
           </SelectItem>

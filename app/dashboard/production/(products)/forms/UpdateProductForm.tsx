@@ -102,7 +102,7 @@ export const UpdateProductForm: FC<UpdateProductFormProps> = ({
       </div>
       <div className="space-y-4">
         {fields.map((item, index) => (
-          <div key={item.id} className="grid grid-cols-3 gap-2 items-end">
+          <div key={item.id} className="gridProduct">
             <Select
               {...register(`stock.${index}.product_id`, { required: "Elemento es requerido" })}
               label="Material"

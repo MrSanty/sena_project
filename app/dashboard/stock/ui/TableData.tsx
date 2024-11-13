@@ -102,6 +102,9 @@ export const TableData: FC<TableDataProps> = ({ company_id, id }) => {
               />
             </div>
           }
+          classNames={{
+            wrapper: "shadow-none border border-gray-300",
+          }}
         >
           <TableHeader>
             <TableColumn
