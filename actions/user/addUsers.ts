@@ -7,6 +7,24 @@ import bcrypt from 'bcryptjs'
 
 export const addUsers = async (data: CreateUserServer) => {
   try {
+    const existUser = await prisma.users.findFirst({
+      where: {
+        OR: [
+          {
+            email: data.email
+          },
+          {
+            num_doc: data.num_doc
+          }
+        ]
+      }
+    })
+
+
+    if (existUser) {
+      throw new Error('El correo o el número de documento ya se encuentra registrado')
+    }
+
     const {
       type_doc,
       num_doc,
@@ -53,6 +71,13 @@ export const addUsers = async (data: CreateUserServer) => {
 
     return true
   } catch (error: any) {
-    throw new Error(error)
+    console.log(error.message)
+    if (error.message.includes('password')) {
+      throw new Error('La contraseña debe tener al menos 8 caracteres')
+    } else if (error.message.includes('ya se encuentra registrado')) {
+      throw new Error('El correo o el número de documento ya se encuentra registrado')
+    } else {
+      throw new Error('Ha ocurrido un error al agregar el usuario')
+    }
   }
 }

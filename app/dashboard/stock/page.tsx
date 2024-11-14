@@ -2,6 +2,7 @@ import { CreateModal } from "./modals/CreateModal"
 import { UploadButton } from "./ui/UploadButton"
 import { TableData } from "./ui/TableData"
 import { auth } from "@/auth"
+import { DownloadButton } from "./ui/DownloadButton"
 
 const Stock = async () => {
   const session = await auth()
@@ -19,6 +20,7 @@ const Stock = async () => {
             />
 
             <UploadButton company_id={session?.user.company_id as number} />
+            <DownloadButton company_id={session?.user.company_id as number} />
           </div>
         </div>
 

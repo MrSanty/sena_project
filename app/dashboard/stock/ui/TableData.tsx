@@ -23,6 +23,7 @@ import {
   Pagination,
   Chip
 } from "@nextui-org/react"
+import { DownloadButton } from "./DownloadButton"
 
 interface TableDataProps {
   company_id: number;
@@ -84,6 +85,7 @@ export const TableData: FC<TableDataProps> = ({ company_id, id }) => {
           />
 
           <UploadButton company_id={company_id} />
+          <DownloadButton company_id={company_id} />
         </div>
       </div>
       <div className="overflow-x-auto rounded-md">

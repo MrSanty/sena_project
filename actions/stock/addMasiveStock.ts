@@ -15,6 +15,15 @@ export const addMasiveStock = async (data: CreateMultipleStockServer[]) => {
 
     return true
   } catch (error: any) {
-    throw new Error(error)
+  // Invalid value for argument `unit_type`
+    if (error.message.includes('Duplicate entry')) {
+      throw new Error('Hay productos duplicados')
+    } else if (error.message.includes('missing')) {
+      throw new Error('Faltan campos obligatorios')
+    } else if (error.message.includes('Invalid value')) {
+      throw new Error('Valor inválido para el campo tipo de unidad')
+    } else {
+      throw new Error('Error al guardar los productos')
+    }
   }
 }

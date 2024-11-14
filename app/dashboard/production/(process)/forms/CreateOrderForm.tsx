@@ -37,7 +37,7 @@ export const CreateOrderForm: FC<CreateOrderFormProps> = ({ onClose }) => {
     }
   })
 
-  const { mutate } = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationFn: async (data: any) => {
       try {
         const product = await addProcess(data)
@@ -55,9 +55,9 @@ export const CreateOrderForm: FC<CreateOrderFormProps> = ({ onClose }) => {
       toast.success("Orden agregada correctamente")
       onClose()
     },
-    onError: () => {
+    onError: (error: Error) => {
       toast.dismiss("addProcess")
-      toast.error("Ocurrió un error al agregar la orden")
+      toast.error(error.message)
     }
   })
 
@@ -109,7 +109,7 @@ export const CreateOrderForm: FC<CreateOrderFormProps> = ({ onClose }) => {
         <Button size="sm" color="danger" variant="light" onPress={onClose}>
           Cancelar
         </Button>
-        <Button size="sm" className="bg-zinc-900 text-white" type="submit">
+        <Button size="sm" className="bg-zinc-900 text-white" type="submit" isLoading={isPending}>
           Crear Orden
         </Button>
       </div>

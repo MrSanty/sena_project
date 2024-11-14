@@ -29,9 +29,9 @@ export const useAddMasive = (company_id: number) => {
       toast.success('Archivo CSV cargado correctamente')
       fileInputRef.current!.value = ''
     },
-    onError: () => {
+    onError: (error: Error) => {
       toast.dismiss('addStock')
-      toast.error('Error al cargar el archivo CSV')
+      toast.error(error.message)
       fileInputRef.current!.value = ''
     },
   })

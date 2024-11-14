@@ -114,7 +114,9 @@ export const Products: FC<ProductsProps> = ({
                   >
                     <div className="flex flex-col gap-2">
                       <div className="flex justify-between items-center">
-                        <h2 className="font-semibold text-gray-600">Ingredientes</h2>
+                        <h2 className="font-semibold text-gray-600">
+                          Materiales
+                        </h2>
                         <span className="font-semibold text-gray-600">Cantidad</span>
 
                       </div>

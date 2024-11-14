@@ -36,7 +36,17 @@ export const Process = () => {
     queryKey: [ "process", search ],
     queryFn: async () => {
       try {
-        const data = await getProcess(search, status)
+        let data = await getProcess(search, status)
+
+        data = data?.map((item: any) => {
+          const diff = new Date().getTime() - new Date(item.created_at).getTime()
+          const minutes = Math.floor(diff / 60000)
+
+          return {
+            ...item,
+            minutes
+          }
+        }) || []
         return data
       } catch (error) {
         console.error(error)
@@ -47,7 +57,15 @@ export const Process = () => {
   })
   useEffect(() => {
     refetch()
-  }, [ search, status ])
+  }, [ search, status])
+
+  useEffect(() => {
+    // actualizar los minutos transcurridos cada minuto
+    const interval = setInterval(() => {
+      refetch()
+    }, 60000)
+    return () => clearInterval(interval)
+  }, [])
 
   const onSearchChange = (value: string) => {
     setSearch(value)
@@ -133,6 +151,9 @@ export const Process = () => {
               Tiempo estimado (min)
             </TableColumn>
             <TableColumn align="center">
+              Tiempo transcurrido (min)
+            </TableColumn>
+            <TableColumn align="center">
               Fecha de inicio
             </TableColumn>
             <TableColumn align="center">
@@ -174,6 +195,12 @@ export const Process = () => {
                   </TableCell>
                   <TableCell>
                     {item.estimated_time}
+                  </TableCell>
+                  <TableCell>
+                    {
+                      // @ts-ignore
+                      item.minutes
+                    }
                   </TableCell>
                   <TableCell>
                     {format(new Date(item.created_at), "dd 'de' MMMM 'de' yyyy", { locale: es })}

@@ -32,3 +32,17 @@ export const readCsvFile = async (file: File, company_id: number) => {
     }
   })
 }
+
+// export data with csv format  and headers
+export const exportCsvFile = (data: any[], filename: string) => {
+  const headers = Object.keys(data[0]).join(',')
+  const values = data.map(item => Object.values(item).join(',')).join('\n')
+  const csv = `${headers}\n${values}`
+  const blob = new Blob([csv], { type: 'text/csv' })
+  const url = URL.createObjectURL(blob)
+  const a = document.createElement('a')
+  a.href = url
+  a.download = `${filename}.csv`
+  a.click()
+  URL.revokeObjectURL(url)
+}

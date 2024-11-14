@@ -27,7 +27,7 @@ export const UploadButton: FC<UploadButtonProps> = ({
       >
         <UploadIcon className="m-0 sm:mr-1 h-4 w-4" />
         <span className="hidden sm:block">
-          Import CSV
+          Importar CSV
         </span>
       </Button>
       <input

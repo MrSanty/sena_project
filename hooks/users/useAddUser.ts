@@ -32,9 +32,9 @@ export const useAddUser = (onClose: () => void, company_id: number) => {
       toast.success("Usuario agregado correctamente")
       onClose()
     },
-    onError: () => {
+    onError: (error: any) => {
       toast.dismiss("addUser")
-      toast.error("Error al agregar el usuario")
+      toast.error(error.message)
     }
   })
 
