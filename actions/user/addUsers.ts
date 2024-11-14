@@ -73,7 +73,12 @@ export const addUsers = async (data: CreateUserServer) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
-      }
+      },
+      body: JSON.stringify({
+        email: newUser.email,
+        company: 'Sena ERP',
+        name: `${newUser.first_name} ${newUser.last_name}`
+      })
     })
 
     return true

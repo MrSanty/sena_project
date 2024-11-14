@@ -1,16 +1,23 @@
 
 import { WelcomeEmailTemplate } from '@/components/ui/EmailTemplate';
+import { NextApiRequest, NextApiResponse } from 'next';
+import { NextRequest } from 'next/server';
 import { Resend } from 'resend'
 
 const resend = new Resend('re_19debjr5_FmUAXsMpjFGWEih8TB7AG79j');
 
-export async function POST() {
+export async function POST(req: NextRequest, res: NextApiResponse) {
   try {
+    const body = await req.json()
+    const { email, company, name } = body
     const { data, error } = await resend.emails.send({
       from: 'onboarding@resend.dev',
-      to: ['sr.santyquinteror@gmail.com'],
-      subject: 'Hello world',
-      react: WelcomeEmailTemplate(),
+      to: email,
+      subject: `Bienvenido a ${company}`,
+      react: WelcomeEmailTemplate({
+        name: name,
+        company: company,
+      })
     });
 
     if (error) {
