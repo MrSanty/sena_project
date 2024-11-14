@@ -69,6 +69,13 @@ export const addUsers = async (data: CreateUserServer) => {
       },
     })
 
+    await fetch('http://localhost:3000/api/send', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+
     return true
   } catch (error: any) {
     console.log(error.message)
