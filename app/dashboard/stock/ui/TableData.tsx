@@ -161,7 +161,11 @@ export const TableData: FC<TableDataProps> = ({ company_id, id }) => {
                     <Chip
                       variant="bordered"
                     >
-                      {item.unit_type}
+                      {
+                        item.unit_type === 'Cantidad'
+                          ? 'Unidades'
+                          : item.unit_type
+                      }
                     </Chip>
                   </TableCell>
                   <TableCell>
